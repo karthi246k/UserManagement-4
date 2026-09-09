@@ -1,0 +1,18 @@
+Find below a brief summary of the tasks.
+Write a DataAccess class using hibernate and apache ant. No IntelliJ/eclipse plugins should be used for hibernate or ant. The methods below should be present in the DataAccess class. These methods should use a User class similar to the User class used for the servlet assignment. The methods also should have the same functionality as they had in in the servlet assignment. The application should be deployable as a war file. There should be 2 tables. User(id, name, phone, email, homeAddressId & officeAddressId) and Address(id, streetAddress, City, State, ZipCode). Each User row must be able to be linked to 2 Address rows through homeAddressId & officeAddressId fields in the User table.
+insertUser(parameter - a User object)
+updateUser(parameter - a User object)
+deleteUser(parameter - a User object)
+listAllUsers(parameter - none)
+findUser(parameter - int userId)
+
+Call the DataAccess class methods from your Servlet to do the database operations in your Servlet assignment.
+ Discuss with me in case you need any clarification.
+ 
+Notes
+•	Comments should be added to each method, step in the code and build files. 
+•	Any variables used should be self-explanatory. 
+•	Documentation is available on the apache ant & hibernate sites. 
+•	Send a status email to me in reply to this email every evening summarizing the things done on that day. 
+
+

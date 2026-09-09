@@ -1,0 +1,31 @@
+# Build files
+build/
+dist/
+target/
+
+# IDE files
+.classpath
+.project
+.settings/
+.vscode/
+
+#Library
+lib/
+
+# Compiled Java files
+*.class
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment / secrets
+.env
+*.env
+
+# Temporary files
+*.tmp
+*.bak

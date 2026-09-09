@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="usermanage" default="war" basedir=".">
+
+    <!-- Project directories -->
+    <property name="src.dir" value="src"/>
+    <property name="web.dir" value="WebContent"/>
+    <property name="build.dir" value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="dist.dir" value="${build.dir}"/>
+    <property name="lib.dir" value="lib"/>
+    <property name="resources.dir" value="resources"/>
+
+    <!-- Tomcat location -->
+    <property name="tomcat.dir"
+              value="C:/Program Files/Apache Software Foundation/Tomcat 11.0"/>
+
+    <!-- All dependency JAR files -->
+    <path id="project.classpath">
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <!-- Clean -->
+    <target name="clean">
+
+        <echo message="========================================"/>
+        <echo message="CLEAN"/>
+        <echo message="========================================"/>
+        <echo message="Deleting build directory..."/>
+
+        <delete dir="${build.dir}"/>
+
+        <echo message="Clean completed successfully."/>
+        <echo message=""/>
+
+    </target>
+
+    <!-- Create build directories -->
+    <target name="prepare">
+
+        <echo message="========================================"/>
+        <echo message="PREPARE"/>
+        <echo message="========================================"/>
+        <echo message="Creating build/classes folder..."/>
+
+        <!-- Create the build/classes folder.
+        The build folder is automatically created if it does not exist. -->
+        <mkdir dir="${classes.dir}"/>
+
+        <echo message="Copying application resources..."/>
+
+        <!-- Copy application resources from resource folder into the build/classes folder. -->
+        <copy todir="${classes.dir}">
+            <fileset dir="${resources.dir}"/>
+        </copy>
+
+        <echo message="Resources copied successfully."/>
+        <echo message=""/>
+
+    </target>
+
+    <!-- Compile all Java source files from the src folder.
+    The prepare target runs first to create build/classes
+    and copy the required XML files. -->
+    <target name="compile" depends="prepare">
+
+        <echo message="========================================"/>
+        <echo message="COMPILE"/>
+        <echo message="========================================"/>
+        <echo message="Compiling Java source files..."/>
+
+        <!-- Compile Java files from src and place the generated .class files
+            inside the build/classes folder. -->
+        <javac srcdir="${src.dir}"
+            destdir="${classes.dir}"
+            includeantruntime="false"
+            classpathref="project.classpath"/>
+
+        <echo message="Java compilation completed successfully."/>
+        <echo message=""/>
+
+    </target>
+
+    <!-- Create the WAR file.
+    The compile target runs first to compile all Java source files. -->
+    <target name="war" depends="compile">
+
+        <echo message="========================================"/>
+        <echo message="WAR"/>
+        <echo message="========================================"/>
+        <echo message="Creating usermanage.war..."/>
+
+        <!-- Create usermanage.war inside the build folder.
+            Use web.xml from the WebContent/WEB-INF folder. -->
+        <war destfile="${dist.dir}/usermanage.war"
+            webxml="${web.dir}/WEB-INF/web.xml">
+
+            <!-- Copy all web files such as JSP files into the WAR.
+                Exclude web.xml because it is already added using the webxml attribute. -->
+            <fileset dir="${web.dir}">
+                <exclude name="WEB-INF/web.xml"/>
+            </fileset>
+
+            <!-- Copy compiled .class files and XML configuration files
+                from build/classes into WEB-INF/classes inside the WAR. -->
+            <classes dir="${classes.dir}"/>
+
+            <!-- Copy all dependency JAR files from lib
+                into WEB-INF/lib inside the WAR. -->
+            <zipfileset dir="${lib.dir}"
+                        prefix="WEB-INF/lib"/>
+
+        </war>
+
+        <echo message="WAR file created successfully."/>
+        <echo message="Location: ${dist.dir}/usermanage.war"/>
+        <echo message=""/>
+
+    </target>
+
+    <!-- Deploy WAR to Tomcat -->
+    <target name="deploy" depends="war">
+
+        <echo message="========================================"/>
+        <echo message="DEPLOY"/>
+        <echo message="========================================"/>
+        <echo message="Deploying usermanage.war to Tomcat..."/>
+
+        <copy file="${dist.dir}/usermanage.war"
+              todir="${tomcat.dir}/webapps"/>
+
+        <echo message="Deployment completed successfully."/>
+        <echo message="Tomcat webapps: ${tomcat.dir}/webapps"/>
+        <echo message=""/>
+
+    </target>
+
+</project>

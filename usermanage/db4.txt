@@ -1,0 +1,84 @@
+mysql> CREATE TABLE address_4 (
+    ->     id INT PRIMARY KEY AUTO_INCREMENT,
+    ->     streetAddress VARCHAR(255),
+    ->     City VARCHAR(100),
+    ->     State VARCHAR(100),
+    ->     ZipCode VARCHAR(20)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> CREATE TABLE user_4 (
+    ->     id INT PRIMARY KEY AUTO_INCREMENT,
+    ->     name VARCHAR(100) NOT NULL,
+    ->     phone VARCHAR(20),
+    ->     email VARCHAR(150),
+    ->     homeAddressId INT,
+    ->     officeAddressId INT,
+    ->
+    ->     FOREIGN KEY (homeAddressId) REFERENCES address_4(id),
+    ->     FOREIGN KEY (officeAddressId) REFERENCES address_4(id)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc user_4
+    -> ;
++-----------------+--------------+------+-----+---------+----------------+
+| Field           | Type         | Null | Key | Default | Extra          |
++-----------------+--------------+------+-----+---------+----------------+
+| id              | int          | NO   | PRI | NULL    | auto_increment |
+| name            | varchar(100) | NO   |     | NULL    |                |
+| phone           | varchar(20)  | YES  |     | NULL    |                |
+| email           | varchar(150) | YES  |     | NULL    |                |
+| homeAddressId   | int          | YES  | MUL | NULL    |                |
+| officeAddressId | int          | YES  | MUL | NULL    |                |
++-----------------+--------------+------+-----+---------+----------------+
+6 rows in set (0.02 sec)
+
+mysql> desc address_4;
++---------------+--------------+------+-----+---------+----------------+
+| Field         | Type         | Null | Key | Default | Extra          |
++---------------+--------------+------+-----+---------+----------------+
+| id            | int          | NO   | PRI | NULL    | auto_increment |
+| streetAddress | varchar(255) | YES  |     | NULL    |                |
+| City          | varchar(100) | YES  |     | NULL    |                |
+| State         | varchar(100) | YES  |     | NULL    |                |
+| ZipCode       | varchar(20)  | YES  |     | NULL    |                |
++---------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+
+
+INSERT INTO address_4 (streetAddress, City, State, ZipCode) 
+VALUES 
+('MG Road', 'Kochi', 'Kerala', '682016'), 
+('Kakkanad', 'Kochi', 'Kerala', '682030'), 
+('Main Street', 'Trivandrum', 'Kerala', '695001'), 
+('Pattom', 'Trivandrum', 'Kerala', '686001');
+
+mysql> select * from address_4;
++----+---------------+------------+--------+---------+
+| id | streetAddress | City       | State  | ZipCode |
++----+---------------+------------+--------+---------+
+|  1 | MG Road       | Kochi      | Kerala | 682016  |
+|  2 | Kakkanad      | Kochi      | Kerala | 682030  |
+|  3 | Main Street   | Trivandrum | Kerala | 695001  |
+|  4 | Pattom        | Trivandrum | Kerala | 686001  |
++----+---------------+------------+--------+---------+
+4 rows in set (0.01 sec)
+
+
+INSERT INTO user_4
+(name, phone, email, homeAddressId, officeAddressId)
+VALUES
+('Arjun Nair', '9876543212', 'arjun@gmail.com', 1, 3),
+('Meera Joseph', '9876543213', 'meera@gmail.com', 2, 4);
+
+mysql> select * from user_4;
++----+--------------+------------+-----------------+---------------+-----------------+
+| id | name         | phone      | email           | homeAddressId | officeAddressId |
++----+--------------+------------+-----------------+---------------+-----------------+
+|  1 | Arjun Nair   | 9876543212 | arjun@gmail.com |             1 |               3 |
+|  2 | Meera Joseph | 9876543213 | meera@gmail.com |             2 |               4 |
++----+--------------+------------+-----------------+---------------+-----------------+
+2 rows in set (0.00 sec)
+

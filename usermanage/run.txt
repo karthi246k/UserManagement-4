@@ -1,0 +1,2 @@
+cd "C:\Program Files\Apache Software Foundation\Tomcat 11.0\bin"
+startup.bat
