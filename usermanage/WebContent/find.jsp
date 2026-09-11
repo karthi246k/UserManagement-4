@@ -1,18 +1,8 @@
 <%@ page import="com.user.model.User" %>
-<%@ page import="com.user.model.Address" %>
 
 <%
     // Get the User object sent by the FindUser servlet.
     User user = (User) request.getAttribute("user");
-
-    Address homeAddress = null;
-    Address officeAddress = null;
-
-    // Get addresses only when a user was found.
-    if (user != null) {
-        homeAddress = user.getHomeAddress();
-        officeAddress = user.getOfficeAddress();
-    }
 %>
 
 <!DOCTYPE html>
@@ -24,233 +14,201 @@
 
     <title>Find User</title>
 
-    <style>
-
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        .search-box {
-            margin-bottom: 30px;
-        }
-
-        .tables-container {
-            display: flex;
-            gap: 15px;
-            align-items: flex-start;
-        }
-
-        table {
-            border-collapse: collapse;
-        }
-
-        th,
-        td {
-            border: 1px solid black;
-            padding: 8px;
-            white-space: nowrap;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        .not-found {
-            color: red;
-        }
-
-    </style>
+    <link rel="stylesheet" href="css/find.css">
 
 </head>
 
 <body>
 
-    <h1>Find User</h1>
+    <nav class="navbar">
+
+        <div class="logo">
+            User Management System
+        </div>
+
+        <a class="home" href="./">
+            Home
+        </a>
+
+    </nav>
 
 
-    <!-- ==================== Search User ==================== -->
+    <main class="main">
 
-    <div class="search-box">
+        <div class="box">
 
-        <form action="find" method="get">
-
-            <label>User ID:</label>
-
-            <input type="number"
-                   name="id"
-                   required>
-
-            <input type="submit"
-                   value="Find User">
-
-        </form>
-
-    </div>
+            <h1>Find User</h1>
 
 
-    <%
-        // Display user details only when a user was found.
-        if (user != null) {
-    %>
+            <!-- ==================== Search User ==================== -->
 
+            <div class="search-box">
 
-    <!-- ==================== User Details ==================== -->
+                <form action="find" method="get">
 
-    <div class="tables-container">
+                    <label>User ID:</label>
 
+                    <input type="number"
+                           name="id"
+                           required>
 
-        <table>
+                    <input type="submit"
+                           value="Find User">
 
-            <tr>
-                <th colspan="4">User Details</th>
-            </tr>
+                </form>
 
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Phone</th>
-                <th>Email</th>
-            </tr>
+            </div>
 
-            <tr>
-
-                <td>
-                    <%= user.getId() %>
-                </td>
-
-                <td>
-                    <%= user.getName() %>
-                </td>
-
-                <td>
-                    <%= user.getPhone() %>
-                </td>
-
-                <td>
-                    <%= user.getEmail() %>
-                </td>
-
-            </tr>
-
-        </table>
-
-
-        <!-- ==================== Home Address ==================== -->
-
-        <table>
-
-            <tr>
-                <th colspan="5">Home Address</th>
-            </tr>
-
-            <tr>
-                <th>ID</th>
-                <th>Street</th>
-                <th>City</th>
-                <th>State</th>
-                <th>ZipCode</th>
-            </tr>
 
             <%
-                if (homeAddress != null) {
+                // Display user details only when a user was found.
+                if (user != null) {
             %>
 
-            <tr>
 
-                <td>
-                    <%= homeAddress.getId() %>
-                </td>
+            <!-- ==================== User Details ==================== -->
 
-                <td>
-                    <%= homeAddress.getStreetAddress() %>
-                </td>
+            <div class="details-section">
 
-                <td>
-                    <%= homeAddress.getCity() %>
-                </td>
+                <h2>User Details</h2>
 
-                <td>
-                    <%= homeAddress.getState() %>
-                </td>
+                <table>
 
-                <td>
-                    <%= homeAddress.getZipCode() %>
-                </td>
+                    <tr>
+                        <th>ID</th>
+                        <td>
+                            <%= user.getId() %>
+                        </td>
+                    </tr>
 
-            </tr>
+                    <tr>
+                        <th>Name</th>
+                        <td>
+                            <%= user.getName() %>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Phone</th>
+                        <td>
+                            <%= user.getPhone() %>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Email</th>
+                        <td>
+                            <%= user.getEmail() %>
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+
+            <!-- ==================== Home Address ==================== -->
+
+            <div class="details-section">
+
+                <h2>Home Address</h2>
+
+                <table>
+
+                    <tr>
+                        <th>Street</th>
+                        <td>
+                            <%= user.getHomeAddress() != null ? user.getHomeAddress().getStreetAddress() : "" %>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>City</th>
+                        <td>
+                            <%= user.getHomeAddress() != null ? user.getHomeAddress().getCity() : "" %>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>State</th>
+                        <td>
+                            <%= user.getHomeAddress() != null ? user.getHomeAddress().getState() : "" %>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>ZipCode</th>
+                        <td>
+                            <%= user.getHomeAddress() != null ? user.getHomeAddress().getZipCode() : "" %>
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+
+            <!-- ==================== Office Address ==================== -->
+
+            <div class="details-section">
+
+                <h2>Office Address</h2>
+
+                <table>
+
+                    <tr>
+                        <th>Street</th>
+                        <td>
+                            <%= user.getOfficeAddress() != null ? user.getOfficeAddress().getStreetAddress() : "" %>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>City</th>
+                        <td>
+                            <%= user.getOfficeAddress() != null ? user.getOfficeAddress().getCity() : "" %>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>State</th>
+                        <td>
+                            <%= user.getOfficeAddress() != null ? user.getOfficeAddress().getState() : "" %>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>ZipCode</th>
+                        <td>
+                            <%= user.getOfficeAddress() != null ? user.getOfficeAddress().getZipCode() : "" %>
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+
+            <%
+                } else if (request.getParameter("id") != null) {
+            %>
+
+
+                <!-- ==================== User Not Found ==================== -->
+
+                <p class="not-found">
+                    User not found.
+                </p>
+
 
             <%
                 }
             %>
 
-        </table>
 
+        </div>
 
-        <!-- ==================== Office Address ==================== -->
-
-        <table>
-
-            <tr>
-                <th colspan="5">Office Address</th>
-            </tr>
-
-            <tr>
-                <th>ID</th>
-                <th>Street</th>
-                <th>City</th>
-                <th>State</th>
-                <th>ZipCode</th>
-            </tr>
-
-            <%
-                if (officeAddress != null) {
-            %>
-
-            <tr>
-
-                <td>
-                    <%= officeAddress.getId() %>
-                </td>
-
-                <td>
-                    <%= officeAddress.getStreetAddress() %>
-                </td>
-
-                <td>
-                    <%= officeAddress.getCity() %>
-                </td>
-
-                <td>
-                    <%= officeAddress.getState() %>
-                </td>
-
-                <td>
-                    <%= officeAddress.getZipCode() %>
-                </td>
-
-            </tr>
-
-            <%
-                }
-            %>
-
-        </table>
-
-
-    </div>
-
-
-    <%
-        } else if (request.getParameter("id") != null) {
-    %>
-
-        <p class="not-found">
-            User not found.
-        </p>
-
-    <%
-        }
-    %>
+    </main>
 
 
 </body>

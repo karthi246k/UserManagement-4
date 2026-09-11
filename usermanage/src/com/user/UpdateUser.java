@@ -1,4 +1,3 @@
-
 package com.user;
 
 import java.io.IOException;
@@ -14,114 +13,205 @@ import com.user.model.User;
 // Update a user in the database.
 public class UpdateUser extends HttpServlet {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
+    // Display the update form.
+    protected void doGet(HttpServletRequest request,
+                         HttpServletResponse response)
+            throws ServletException, IOException {
 
-        // Get the user ID from the Update button.
-        int userId = Integer.parseInt(request.getParameter("id"));
+        try {
 
-        // Create DataAccess object.
-        DataAccess dataAccess = new DataAccess();
+            // Get the user ID from the request.
+            int userId = Integer.parseInt(request.getParameter("id"));
 
-        // Find the user.
-        User user = dataAccess.findUser(userId);
+            // Create DataAccess object.
+            DataAccess dataAccess = new DataAccess();
 
-        if (user != null) {
+            // Find the user.
+            User user = dataAccess.findUser(userId);
 
-            // Find the user's home address.
-            Address homeAddress = dataAccess.findAddress(user.getHomeAddressId());
+            // Check whether the user exists.
+            if (user != null) {
 
-            // Find the user's office address.
-            Address officeAddress = dataAccess.findAddress(user.getOfficeAddressId());
+                // Send the user to update.jsp.
+                request.setAttribute("user", user);
 
-            // Set the addresses inside the User object.
-            user.setHomeAddress(homeAddress);
-            user.setOfficeAddress(officeAddress);
+                request.getRequestDispatcher("update.jsp").forward(request, response);
 
-            // Send the User object to update.jsp.
-            request.setAttribute("user", user);
+            } else {
 
-            // Display the update form.
-            request.getRequestDispatcher("update.jsp").forward(request, response);
+                // User was not found.
+                response.sendRedirect("list");
+            }
 
-        } else {
-            // User not found.
+        } catch (Exception e) {
+
+            // Print actual error in server console.
+            e.printStackTrace();
+
+            // Go back to the user list if the update page cannot be loaded.
             response.sendRedirect("list");
         }
     }
 
-    // Update the user details in the database.
-    // Update the user and address details in the database.
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
 
-        // Get the user ID from the update form.
-        int userId = Integer.parseInt(request.getParameter("id"));
+    // Update the user and address details.
+    protected void doPost(HttpServletRequest request,
+                          HttpServletResponse response)
+            throws ServletException, IOException {
 
-        // Get the updated user details from the form.
-        String name = request.getParameter("name");
-        String phone = request.getParameter("phone");
-        String email = request.getParameter("email");
+        try {
 
-        // Get the updated home address details from the form.
-        String homeStreetAddress = request.getParameter("homeStreetAddress");
-        String homeCity = request.getParameter("homeCity");
-        String homeState = request.getParameter("homeState");
-        String homeZipCode = request.getParameter("homeZipCode");
+            // ==================== User ID ====================
 
-        // Get the updated office address details from the form.
-        String officeStreetAddress = request.getParameter("officeStreetAddress");
-        String officeCity = request.getParameter("officeCity");
-        String officeState = request.getParameter("officeState");
-        String officeZipCode = request.getParameter("officeZipCode");
+            // Get the user ID from the update form.
+            int userId = Integer.parseInt(request.getParameter("id"));
 
-        // Create DataAccess object.
-        DataAccess dataAccess = new DataAccess();
 
-        // Find the existing user.
-        User user = dataAccess.findUser(userId);
+            // ==================== User Details ====================
 
-        if (user != null) {
+            // Get updated user details.
+            String name = request.getParameter("name");
+            String phone = request.getParameter("phone");
+            String email = request.getParameter("email");
 
-            // Update the User object.
-            user.setName(name);
-            user.setPhone(phone);
-            user.setEmail(email);
 
-            // Find the existing home address.
-            Address homeAddress = dataAccess.findAddress(user.getHomeAddressId());
+            // ==================== Home Address ====================
 
-            // Update the home address.
-            if (homeAddress != null) {
-                homeAddress.setStreetAddress(homeStreetAddress);
-                homeAddress.setCity(homeCity);
-                homeAddress.setState(homeState);
-                homeAddress.setZipCode(homeZipCode);
+            // Get updated home address details.
+            String homeStreetAddress = request.getParameter("homeStreetAddress");
+            String homeCity = request.getParameter("homeCity");
+            String homeState = request.getParameter("homeState");
+            String homeZipCode = request.getParameter("homeZipCode");
 
-                // Update the home address in the database.
-                dataAccess.updateAddress(homeAddress);
+
+            // ==================== Office Address ====================
+
+            // Get updated office address details.
+            String officeStreetAddress = request.getParameter("officeStreetAddress");
+            String officeCity = request.getParameter("officeCity");
+            String officeState = request.getParameter("officeState");
+            String officeZipCode = request.getParameter("officeZipCode");
+
+
+            // ==================== DataAccess ====================
+
+            // Create DataAccess object.
+            DataAccess dataAccess = new DataAccess();
+
+
+            // ==================== Find User ====================
+
+            // Find the existing user.
+            User user = dataAccess.findUser(userId);
+
+
+            // ==================== Check User ====================
+
+            if (user != null) {
+
+
+                // ==================== Update User ====================
+
+                user.setName(name);
+                user.setPhone(phone);
+                user.setEmail(email);
+
+
+                // ==================== Update Home Address ====================
+
+                Address homeAddress = user.getHomeAddress();
+
+                if (homeAddress != null) {
+
+                    homeAddress.setStreetAddress(homeStreetAddress);
+                    homeAddress.setCity(homeCity);
+                    homeAddress.setState(homeState);
+                    homeAddress.setZipCode(homeZipCode);
+                }
+
+
+                // ==================== Update Office Address ====================
+
+                Address officeAddress = user.getOfficeAddress();
+
+                if (officeAddress != null) {
+
+                    officeAddress.setStreetAddress(officeStreetAddress);
+                    officeAddress.setCity(officeCity);
+                    officeAddress.setState(officeState);
+                    officeAddress.setZipCode(officeZipCode);
+                }
+
+
+                // ==================== Save Everything ====================
+
+                // Update user and addresses.
+                //
+                // CascadeType.MERGE in User.java
+                // allows the associated addresses
+                // to be merged.
+
+                dataAccess.updateUser(user);
+
+
+                // ==================== Update Successful ====================
+                //throw new Exception("Not Found");
+                // Send success information to update.jsp.
+                request.setAttribute("updateSuccess", true);
+
+                // Send the updated user back to update.jsp.
+                request.setAttribute("user", user);
+
+
+            } else {
+
+                // User was not found.
+                request.setAttribute("updateError", "User not found.");
             }
 
-            // Find the existing office address.
-            Address officeAddress = dataAccess.findAddress(user.getOfficeAddressId());
 
-            // Update the office address.
-            if (officeAddress != null) {
-                officeAddress.setStreetAddress(officeStreetAddress);
-                officeAddress.setCity(officeCity);
-                officeAddress.setState(officeState);
-                officeAddress.setZipCode(officeZipCode);
+        } catch (Exception e) {
 
-                // Update the office address in the database.
-                dataAccess.updateAddress(officeAddress);
+            // Print actual error in server console.
+            e.printStackTrace();
+
+
+            // Send error message to update.jsp.
+            request.setAttribute("updateError", "Unable to update the user. Please try again.");
+
+
+            /*
+             * Try to load the user again so that
+             * update.jsp can display the form.
+             */
+            try {
+
+                // Get the user ID again.
+                int userId = Integer.parseInt(request.getParameter("id"));
+
+                // Create DataAccess object.
+                DataAccess dataAccess = new DataAccess();
+
+                // Find the user again.
+                User user = dataAccess.findUser(userId);
+
+                // Send the user back to update.jsp.
+                request.setAttribute("user", user);
+
+            } catch (Exception ex) {
+
+                // Print actual error in server console.
+                ex.printStackTrace();
             }
-
-            // Update the User object in the database.
-            dataAccess.updateUser(user);
         }
 
-        // Redirect back to the user list.
-        response.sendRedirect("list");
+
+        // Display update.jsp.
+        //
+        // update.jsp will show:
+        // - Success popup if updateSuccess == true
+        // - Error popup if updateError != null
+
+        request.getRequestDispatcher("update.jsp").forward(request, response);
     }
-    
 }

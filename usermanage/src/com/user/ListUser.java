@@ -13,7 +13,9 @@ import com.user.model.User;
 
 public class ListUser extends HttpServlet {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request,
+                         HttpServletResponse response)
+                         throws ServletException, IOException {
 
         DataAccess dataAccess = new DataAccess();
 

@@ -1,0 +1,35 @@
+Assignment4/
+│
+├── src/
+│   └── com/
+│       └── user/
+│           └── model/
+│           │   ├── User.java
+│           │   └── Address.java
+│           ├── AddUserServlet.java
+│           ├── UpdateUserServlet.java
+│           ├── DeleteUserServlet.java
+│           ├── ListUserServlet.java
+│           ├── DBConnect.java
+│           └── DataAccess.java
+│
+├── resources/
+│   └── hibernate.cfg.xml
+│
+├── WebContent/
+│   ├── WEB-INF/
+│   │   └── web.xml
+│   │
+│   ├── find.jsp
+│   ├── home.jsp
+│   ├── add.jsp
+│   ├── update.jsp
+│   └── list.jsp
+│
+├── build.xml
+│
+├── pom.xml
+│
+└── build/
+    ├── classes/
+    └── ...

@@ -7,7 +7,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import com.user.model.Address;
 import com.user.model.User;
 
 public class FindUser extends HttpServlet {
@@ -32,24 +31,8 @@ public class FindUser extends HttpServlet {
         // Create DataAccess object.
         DataAccess dataAccess = new DataAccess();
 
-        // Find the user using the user ID.
+        // Find the user with home and office addresses.
         User user = dataAccess.findUser(userId);
-
-        // If the user exists, find both addresses.
-        if (user != null) {
-
-            // Find the user's home address.
-            Address homeAddress =
-                    dataAccess.findAddress(user.getHomeAddressId());
-
-            // Find the user's office address.
-            Address officeAddress =
-                    dataAccess.findAddress(user.getOfficeAddressId());
-
-            // Set the addresses inside the User object.
-            user.setHomeAddress(homeAddress);
-            user.setOfficeAddress(officeAddress);
-        }
 
         // Send the User object to find.jsp.
         request.setAttribute("user", user);

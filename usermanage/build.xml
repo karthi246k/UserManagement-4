@@ -76,7 +76,12 @@
         <javac srcdir="${src.dir}"
             destdir="${classes.dir}"
             includeantruntime="false"
-            classpathref="project.classpath"/>
+            classpathref="project.classpath">
+
+            <!-- Temporarily exclude files that are being updated -->
+
+
+        </javac>
 
         <echo message="Java compilation completed successfully."/>
         <echo message=""/>

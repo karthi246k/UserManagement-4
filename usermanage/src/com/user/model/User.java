@@ -1,12 +1,13 @@
-
 package com.user.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "user_4")
@@ -17,19 +18,30 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    // User details.
     private String name;
     private String phone;
     private String email;
 
-    private int homeAddressId;
-    private int officeAddressId;
-
-    // These are not database columns.
-    @Transient
+    // Home address relationship.
+    @OneToOne(cascade = {
+        CascadeType.PERSIST,
+        CascadeType.MERGE,
+        CascadeType.REMOVE
+    })
+    @JoinColumn(name = "homeAddressId")
     private Address homeAddress;
 
-    @Transient
+    //Office address relationship.
+    @OneToOne(cascade = {
+        CascadeType.PERSIST,
+        CascadeType.MERGE,
+        CascadeType.REMOVE
+    })
+    @JoinColumn(name = "officeAddressId")
     private Address officeAddress;
+
+    // ==================== Getters and Setters ====================
 
     public int getId() {
         return id;
@@ -39,6 +51,7 @@ public class User {
         this.id = id;
     }
 
+
     public String getName() {
         return name;
     }
@@ -46,6 +59,7 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
+
 
     public String getPhone() {
         return phone;
@@ -55,6 +69,7 @@ public class User {
         this.phone = phone;
     }
 
+
     public String getEmail() {
         return email;
     }
@@ -63,21 +78,6 @@ public class User {
         this.email = email;
     }
 
-    public int getHomeAddressId() {
-        return homeAddressId;
-    }
-
-    public void setHomeAddressId(int homeAddressId) {
-        this.homeAddressId = homeAddressId;
-    }
-
-    public int getOfficeAddressId() {
-        return officeAddressId;
-    }
-
-    public void setOfficeAddressId(int officeAddressId) {
-        this.officeAddressId = officeAddressId;
-    }
 
     public Address getHomeAddress() {
         return homeAddress;
@@ -86,6 +86,7 @@ public class User {
     public void setHomeAddress(Address homeAddress) {
         this.homeAddress = homeAddress;
     }
+
 
     public Address getOfficeAddress() {
         return officeAddress;

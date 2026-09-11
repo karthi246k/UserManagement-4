@@ -1,0 +1,554 @@
+/* ==================== Global ==================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #ffffff;
+    color: #111111;
+}
+
+
+/* ==================== Navbar ==================== */
+
+.navbar {
+    height: 68px;
+
+    background: #111111;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 7%;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+.logo {
+    color: #ffffff;
+
+    font-size: 21px;
+    font-weight: 600;
+
+    letter-spacing: 0.3px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.nav-links a {
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    padding: 8px 14px;
+
+    border: 1px solid transparent;
+
+    border-radius: 5px;
+
+    transition: 0.25s ease;
+}
+
+.nav-links a:hover {
+    background: #ffffff;
+
+    color: #111111;
+}
+
+
+/* ==================== Page Container ==================== */
+
+.page-container {
+    width: 100%;
+
+    max-width: 1000px;
+
+    margin: 0 auto;
+
+    padding: 40px 30px;
+}
+
+.page-container h1 {
+    text-align: center;
+
+    font-size: 30px;
+
+    font-weight: 600;
+
+    margin-bottom: 35px;
+}
+
+
+/* ==================== Form ==================== */
+
+.user-form {
+    width: 100%;
+}
+
+
+/* ==================== Form Section ==================== */
+
+.form-section {
+    width: 100%;
+
+    border: 1px solid #111111;
+
+    margin-bottom: 25px;
+
+    background: #ffffff;
+}
+
+
+/* ==================== Section Heading ==================== */
+
+.section-heading {
+    background: #111111;
+
+    color: #ffffff;
+
+    padding: 13px 18px;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    border-bottom: 1px solid #111111;
+}
+
+
+/* ==================== Form Grid ==================== */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+
+    padding: 25px;
+}
+
+
+/* ==================== Form Group ==================== */
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+
+/* ==================== Labels ==================== */
+
+.form-group label {
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #111111;
+}
+
+
+/* ==================== Inputs ==================== */
+
+.form-group input {
+    width: 100%;
+
+    height: 40px;
+
+    padding: 9px 11px;
+
+    border: 1px solid #111111;
+
+    border-radius: 4px;
+
+    background: #ffffff;
+
+    color: #111111;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+.form-group input:focus {
+    box-shadow: 0 0 0 2px rgba(17, 17, 17, 0.12);
+}
+
+
+/* ==================== Submit Area ==================== */
+
+.submit-area {
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: 5px;
+}
+
+
+/* ==================== Insert Button ==================== */
+
+.insert-btn {
+    background: #111111;
+
+    color: #ffffff;
+
+    border: 1px solid #111111;
+
+    padding: 10px 24px;
+
+    border-radius: 4px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.insert-btn:hover {
+    background: #ffffff;
+
+    color: #111111;
+}
+
+
+/* ================================================= */
+/*                  POPUP OVERLAY                    */
+/* ================================================= */
+
+.popup-overlay {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.50);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 1000;
+}
+
+
+/* ================================================= */
+/*              CONFIRMATION POPUP                   */
+/* ================================================= */
+
+.popup-box {
+    width: 390px;
+
+    background: #ffffff;
+
+    border: 1px solid #111111;
+
+    border-radius: 6px;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+
+/* ==================== Popup Heading ==================== */
+
+.popup-box h2 {
+    font-size: 20px;
+
+    font-weight: 600;
+
+    margin-bottom: 12px;
+}
+
+
+/* ==================== Popup Message ==================== */
+
+.popup-box p {
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    color: #444444;
+
+    margin-bottom: 25px;
+}
+
+
+/* ==================== Popup Buttons ==================== */
+
+.popup-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+}
+
+
+/* ==================== Confirm Button ==================== */
+
+.popup-confirm-btn {
+    background: #111111;
+
+    color: #ffffff;
+
+    border: 1px solid #111111;
+
+    padding: 9px 25px;
+
+    border-radius: 4px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.popup-confirm-btn:hover {
+    background: #ffffff;
+
+    color: #111111;
+}
+
+
+/* ==================== Cancel Button ==================== */
+
+.popup-cancel-btn {
+    background: #ffffff;
+
+    color: #111111;
+
+    border: 1px solid #111111;
+
+    padding: 9px 25px;
+
+    border-radius: 4px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.popup-cancel-btn:hover {
+    background: #111111;
+
+    color: #ffffff;
+}
+
+
+/* ================================================= */
+/*                  SUCCESS POPUP                    */
+/* ================================================= */
+
+.success-popup-box {
+    width: 390px;
+
+    background: #ffffff;
+
+    border: 1px solid #111111;
+
+    border-radius: 6px;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+
+/* ==================== Success Heading ==================== */
+
+.success-popup-box h2 {
+    font-size: 20px;
+
+    font-weight: 600;
+
+    margin-bottom: 12px;
+}
+
+
+/* ==================== Success Message ==================== */
+
+.success-popup-box p {
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    color: #444444;
+
+    margin-bottom: 25px;
+}
+
+
+/* ==================== OK Button ==================== */
+
+.popup-ok-btn {
+    background: #111111;
+
+    color: #ffffff;
+
+    border: 1px solid #111111;
+
+    padding: 9px 30px;
+
+    border-radius: 4px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.popup-ok-btn:hover {
+    background: #ffffff;
+
+    color: #111111;
+}
+
+.error-popup-box {
+    width: 390px;
+    background: #ffffff;
+    border: 1px solid #111111;
+    border-radius: 6px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    padding: 30px;
+}
+
+.error-popup-box h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.error-popup-box p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #444444;
+    margin-bottom: 25px;
+}
+
+/* ================================================= */
+/*                  RESPONSIVE                      */
+/* ================================================= */
+
+@media (max-width: 700px) {
+
+    .navbar {
+        height: auto;
+
+        min-height: 68px;
+
+        padding: 12px 20px;
+
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+
+    .logo {
+        font-size: 18px;
+    }
+
+
+    .nav-links {
+        gap: 3px;
+    }
+
+
+    .nav-links a {
+        padding: 7px 9px;
+
+        font-size: 13px;
+    }
+
+
+    .page-container {
+        padding: 30px 15px;
+    }
+
+
+    .page-container h1 {
+        font-size: 25px;
+
+        margin-bottom: 25px;
+    }
+
+
+    .form-grid {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+
+        padding: 20px;
+    }
+
+
+    .form-group.full-width {
+        grid-column: auto;
+    }
+
+
+    .popup-box,
+    .success-popup-box {
+        width: calc(100% - 30px);
+
+        padding: 25px;
+    }
+
+
+    .popup-buttons {
+        flex-direction: column;
+    }
+
+
+    .popup-confirm-btn,
+    .popup-cancel-btn {
+        width: 100%;
+    }
+
+}

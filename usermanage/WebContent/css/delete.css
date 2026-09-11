@@ -1,0 +1,195 @@
+/* ================================================= */
+/*              DELETE POPUP OVERLAY                 */
+/* ================================================= */
+
+.delete-popup-overlay {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.50);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 1000;
+}
+
+
+/* ================================================= */
+/*                DELETE POPUP BOX                   */
+/* ================================================= */
+
+.delete-popup-box {
+
+    width: 390px;
+
+    background: #ffffff;
+
+    border: 1px solid #111111;
+
+    border-radius: 6px;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.25);
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+
+/* ================================================= */
+/*                  POPUP TITLE                      */
+/* ================================================= */
+
+.delete-popup-box h2 {
+
+    font-size: 20px;
+
+    font-weight: 600;
+
+    margin: 0 0 12px 0;
+}
+
+
+/* ================================================= */
+/*                 POPUP MESSAGE                     */
+/* ================================================= */
+
+.delete-popup-box p {
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    color: #444444;
+
+    margin: 0 0 25px 0;
+}
+
+
+/* ================================================= */
+/*                POPUP BUTTONS                     */
+/* ================================================= */
+
+.delete-popup-buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+/* ================================================= */
+/*              YES, DELETE BUTTON                   */
+/* ================================================= */
+
+.delete-confirm-btn {
+
+    background: #111111;
+
+    color: #ffffff;
+
+    border: 1px solid #111111;
+
+    padding: 9px 25px;
+
+    border-radius: 4px;
+
+    cursor: pointer;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+
+.delete-confirm-btn:hover {
+
+    background: #ffffff;
+
+    color: #111111;
+}
+
+
+/* ================================================= */
+/*                CANCEL BUTTON                     */
+/* ================================================= */
+
+.delete-cancel-btn {
+
+    background: #ffffff;
+
+    color: #111111;
+
+    border: 1px solid #111111;
+
+    padding: 9px 25px;
+
+    border-radius: 4px;
+
+    cursor: pointer;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+
+.delete-cancel-btn:hover {
+
+    background: #111111;
+
+    color: #ffffff;
+}
+
+
+/* ================================================= */
+/*                 RESPONSIVE                       */
+/* ================================================= */
+
+@media (max-width: 500px) {
+
+    .delete-popup-box {
+
+        width: calc(100% - 40px);
+
+        padding: 25px;
+    }
+
+
+    .delete-popup-buttons {
+
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+
+    .delete-confirm-btn,
+    .delete-cancel-btn {
+
+        width: 100%;
+    }
+
+}

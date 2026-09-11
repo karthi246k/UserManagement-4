@@ -1,0 +1,523 @@
+/* ==================== Global ==================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #ffffff;
+
+    color: #111111;
+}
+
+
+/* ==================== Navbar ==================== */
+
+.navbar {
+    height: 68px;
+
+    background: #111111;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 7%;
+
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+.logo {
+    color: #ffffff;
+
+    font-size: 21px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.3px;
+}
+
+.nav-links {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.nav-links a {
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    padding: 8px 14px;
+
+    border: 1px solid transparent;
+
+    border-radius: 5px;
+
+    transition: 0.25s ease;
+}
+
+.nav-links a:hover {
+    background: #ffffff;
+
+    color: #111111;
+}
+
+
+/* ==================== Page Container ==================== */
+
+.page-container {
+    width: 100%;
+
+    padding: 40px 4%;
+}
+
+.page-container h1 {
+    text-align: center;
+
+    font-size: 30px;
+
+    font-weight: 600;
+
+    margin-bottom: 35px;
+}
+
+
+/* ==================== Table Wrapper ==================== */
+
+.table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    overflow-y: visible;
+}
+
+
+/* ==================== Main Table ==================== */
+
+.main-table {
+    width: 1700px;
+
+    min-width: 1700px;
+
+    border-collapse: collapse;
+
+    table-layout: fixed;
+
+    background: #ffffff;
+}
+
+
+/* ==================== Table Cells ==================== */
+
+.main-table th,
+.main-table td {
+    min-height: 42px;
+
+    padding: 8px 10px;
+
+    text-align: center;
+
+    vertical-align: middle;
+
+    border: 1px solid #111111;
+
+    /*
+        Allow long content to wrap
+        instead of coming outside the cell.
+    */
+    white-space: normal;
+
+    overflow-wrap: anywhere;
+
+    word-break: break-word;
+
+    overflow: hidden;
+}
+
+
+/* ==================== Section Headings ==================== */
+
+.section-heading {
+    height: 48px !important;
+
+    padding: 10px !important;
+
+    background: #000000;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    text-align: center;
+
+    vertical-align: middle;
+}
+
+
+/* ==================== Section Borders ==================== */
+
+
+/*
+    Actions | User Details
+*/
+.actions-section {
+    border-right: 5px solid #000000 !important;
+}
+
+
+/*
+    User Details | Home Address
+*/
+.user-section {
+    border-right: 5px solid #000000 !important;
+}
+
+
+/*
+    Home Address | Office Address
+*/
+.home-section {
+    border-right: 5px solid #000000 !important;
+}
+
+
+/* ==================== Column Headings ==================== */
+
+.column-heading {
+    height: 44px;
+
+    background: #111111;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-align: center;
+
+    vertical-align: middle;
+}
+
+
+/* ==================== Data Cells ==================== */
+
+.main-table td {
+    background: #ffffff;
+
+    color: #111111;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+}
+
+
+/* ==================== Actions ==================== */
+
+.update-column {
+    width: 100px;
+}
+
+.delete-column {
+    width: 100px;
+}
+
+
+/*
+    Thick border after Delete column
+*/
+.delete-cell {
+    border-right: 5px solid #000000 !important;
+}
+
+
+/* ==================== User Details ==================== */
+
+.id-column {
+    width: 80px;
+}
+
+.name-column {
+    width: 140px;
+}
+
+.phone-column {
+    width: 140px;
+}
+
+.email-column {
+    width: 200px;
+}
+
+
+/*
+    Thick border after Email column
+*/
+.email-cell {
+    border-right: 5px solid #000000 !important;
+
+    white-space: normal !important;
+
+    overflow-wrap: anywhere;
+
+    word-break: break-word;
+}
+
+
+/* ==================== Home Address ==================== */
+
+.home-street-column {
+    width: 190px;
+}
+
+.home-city-column {
+    width: 110px;
+}
+
+.home-state-column {
+    width: 110px;
+}
+
+.home-zip-column {
+    width: 60px;
+}
+
+
+/*
+    Thick border after Home ZipCode
+*/
+.home-zip-cell {
+    border-right: 5px solid #000000 !important;
+}
+
+
+/* ==================== Office Address ==================== */
+
+.office-street-column {
+    width: 190px;
+}
+
+.office-city-column {
+    width: 110px;
+}
+
+.office-state-column {
+    width: 110px;
+}
+
+.office-zip-column {
+    width: 60px;
+}
+
+
+/* ==================== Address Cells ==================== */
+
+.home-street-cell,
+.home-city-cell,
+.home-state-cell,
+.home-zip-cell,
+.office-street-cell,
+.office-city-cell,
+.office-state-cell,
+.office-zip-cell {
+    white-space: normal !important;
+
+    overflow-wrap: anywhere;
+
+    word-break: break-word;
+}
+
+
+/* ==================== Forms ==================== */
+
+form {
+    margin: 0;
+}
+
+
+/* ==================== Action Buttons ==================== */
+
+/*
+    Both Update and Delete buttons
+    use exactly the same size and style.
+*/
+
+
+/* Update button */
+
+td form input[type="submit"] {
+
+    width: 75px;
+
+    height: 34px;
+
+    padding: 0;
+
+    background: #111111;
+
+    color: #ffffff;
+
+    border: 1px solid #111111;
+
+    border-radius: 4px;
+
+    cursor: pointer;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    line-height: 32px;
+
+    transition: 0.2s ease;
+}
+
+
+/* Delete button */
+
+.delete-btn {
+
+    width: 75px;
+
+    height: 34px;
+
+    padding: 0;
+
+    background: #111111;
+
+    color: #ffffff;
+
+    border: 1px solid #111111;
+
+    border-radius: 4px;
+
+    cursor: pointer;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    line-height: 32px;
+
+    transition: 0.2s ease;
+}
+
+
+/* ==================== Update Hover ==================== */
+
+td form input[type="submit"]:hover {
+
+    background: #ffffff;
+
+    color: #111111;
+}
+
+
+/* ==================== Delete Hover ==================== */
+
+.delete-btn:hover {
+
+    background: #ffffff;
+
+    color: #111111;
+}
+
+
+/* ==================== Empty Users Message ==================== */
+
+.no-users {
+    text-align: center;
+
+    padding: 30px;
+
+    font-size: 16px;
+
+    border: 1px solid #111111;
+}
+
+
+/* ==================== Responsive ==================== */
+
+@media (max-width: 1200px) {
+
+    .page-container {
+        padding: 40px 20px;
+    }
+
+    .table-wrapper {
+        width: 100%;
+
+        overflow-x: auto;
+    }
+
+    .main-table {
+        width: 1700px;
+
+        min-width: 1700px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .navbar {
+        height: auto;
+
+        min-height: 68px;
+
+        padding: 12px 20px;
+
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .nav-links {
+        gap: 3px;
+    }
+
+    .nav-links a {
+        padding: 7px 9px;
+
+        font-size: 13px;
+    }
+
+    .page-container {
+        padding: 30px 15px;
+    }
+
+    .page-container h1 {
+        font-size: 25px;
+
+        margin-bottom: 25px;
+    }
+
+    .main-table {
+        width: 1700px;
+
+        min-width: 1700px;
+    }
+}

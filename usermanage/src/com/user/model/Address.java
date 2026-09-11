@@ -1,4 +1,3 @@
-
 package com.user.model;
 
 import jakarta.persistence.Entity;
@@ -21,6 +20,9 @@ public class Address {
     private String state;
     private String zipCode;
 
+
+    // ==================== Getters and Setters ====================
+
     public int getId() {
         return id;
     }
@@ -28,6 +30,7 @@ public class Address {
     public void setId(int id) {
         this.id = id;
     }
+
 
     public String getStreetAddress() {
         return streetAddress;
@@ -37,6 +40,7 @@ public class Address {
         this.streetAddress = streetAddress;
     }
 
+
     public String getCity() {
         return city;
     }
@@ -45,6 +49,7 @@ public class Address {
         this.city = city;
     }
 
+
     public String getState() {
         return state;
     }
@@ -52,6 +57,7 @@ public class Address {
     public void setState(String state) {
         this.state = state;
     }
+
 
     public String getZipCode() {
         return zipCode;
